@@ -259,7 +259,7 @@ function App() {
   const [activeSection, setActiveSection] = useState(null);
 
   useEffect(() => {
-    fetch('/grammar_appendix.json')
+    fetch('/latin-grammar-appendix/grammar_appendix.json')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch grammar_appendix.json');
         return res.json();
