@@ -230,7 +230,7 @@ function TagBar({ tags, activeTags, onTagClick, data }) {
                 >
                   {majorTag} (All)
                 </div>
-                {subheaders.map((subheader, i) => {
+                {subheaders.map((subheader) => {
                   if (subheader === '__INDEPENDENT_SUBJUNCTIVE_NESTED__') {
                     // Render nested option under Subjunctive Mood
                     return (
