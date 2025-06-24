@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 
 const MAJOR_TAGS = ['Agreement and Basic Constructions', 'Noun', 'Verb', 'Participles', 'Voice'];
@@ -66,7 +66,7 @@ function GrammarPoint({ point, onTagClick, activeTags }) {
   );
 }
 
-function Section({ section, onTagClick, activeTags, showSectionHeader, majorTag }) {
+function Section({ section, onTagClick, activeTags, showSectionHeader, majorTag, filterPoints }) {
   if (!section.points || section.points.length === 0) return null;
   
   // Don't show subheader if:
@@ -97,26 +97,388 @@ function Section({ section, onTagClick, activeTags, showSectionHeader, majorTag 
           {section.title}
         </h4>
       )}
-      {section.points.map(point => (
-        (activeTags.length === 0 || (point.tags && activeTags.every(tag => point.tags.includes(tag)))) &&
+      {filterPoints(section.points).map(point => (
         <GrammarPoint key={point.number + point.title} point={point} onTagClick={onTagClick} activeTags={activeTags} />
       ))}
     </div>
   );
 }
 
-function TagBar({ tags, activeTags, onTagClick }) {
-  // Separate major and section tags, deduplicate, and order
+function TagBar({ tags, activeTags, onTagClick, data }) {
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const dropdownRefs = useRef({});
+
+  // Get subheaders for each major tag
+  const getSubheaders = (majorTag) => {
+    if (!data) return [];
+    const subheaders = new Set();
+    data.forEach(section => {
+      if (!section.points || section.points.length === 0) return;
+      let sectionMajor = section.points[0].tags.find(tag => MAJOR_TAGS.includes(tag));
+      if (!sectionMajor && MAJOR_TAGS.includes(section.title)) sectionMajor = section.title;
+      if (sectionMajor === majorTag && section.title !== majorTag) {
+        subheaders.add(section.title);
+      }
+    });
+    // For Verb, insert 'Independent Subjunctive', 'Ut Clauses', 'Relative', 'Conditionals', 'Cum Clauses', and 'Indirect Discourse' as nested options under 'Subjunctive Mood', 'Indicative Mood', and 'Infinitive Mood'.
+    if (majorTag === 'Verb') {
+      const subheaderArr = Array.from(subheaders);
+      const subjIndex = subheaderArr.indexOf('Subjunctive Mood');
+      if (subjIndex !== -1) {
+        subheaderArr.splice(
+          subjIndex + 1,
+          0,
+          '__INDEPENDENT_SUBJUNCTIVE_NESTED__',
+          '__UT_CLAUSES_NESTED__',
+          '__RELATIVE_NESTED__',
+          '__CONDITIONALS_NESTED__',
+          '__CUM_CLAUSES_SUBJUNCTIVE_NESTED__',
+          '__INDIRECT_DISCOURSE_SUBJUNCTIVE_NESTED__'
+        );
+      }
+      const indIndex = subheaderArr.indexOf('Indicative Mood');
+      if (indIndex !== -1) {
+        subheaderArr.splice(
+          indIndex + 1,
+          0,
+          '__CONDITIONALS_INDICATIVE_NESTED__',
+          '__CUM_CLAUSES_INDICATIVE_NESTED__'
+        );
+      }
+      const infIndex = subheaderArr.indexOf('Infinitive Mood');
+      if (infIndex !== -1) {
+        subheaderArr.splice(
+          infIndex + 1,
+          0,
+          '__INDIRECT_DISCOURSE_INFINITIVE_NESTED__'
+        );
+      }
+      return subheaderArr;
+    }
+    return Array.from(subheaders);
+  };
+
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (openDropdown && dropdownRefs.current[openDropdown] && !dropdownRefs.current[openDropdown].contains(event.target)) {
+        setOpenDropdown(null);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [openDropdown]);
+
   const majorTags = MAJOR_TAGS.filter(tag => tags.includes(tag));
-  const sectionTags = tags.filter(tag => !MAJOR_TAGS.includes(tag));
+  // Hide 'Independent Subjunctive', 'Ut Clauses', 'Relative', 'Conditionals', 'Cum Clauses', and 'Indirect Discourse' from sectionTags
+  const sectionTags = tags.filter(tag => !MAJOR_TAGS.includes(tag) && tag !== 'Independent Subjunctive' && tag !== 'Ut Clauses' && tag !== 'Relative' && tag !== 'Conditionals' && tag !== 'Cum Clauses' && tag !== 'Indirect Discourse');
+
   return (
-    <div style={{ margin: '16px 0', display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+    <div style={{ margin: '16px 0', display: 'flex', flexWrap: 'wrap', alignItems: 'center', position: 'relative' }}>
       <strong style={{ marginRight: 8 }}>Filter by tags: </strong>
       <Tag tag={null} onClick={() => onTagClick(null)} active={activeTags.length === 0} isMajor={false}>All</Tag>
-      {majorTags.map(tag => (
-        <Tag key={tag} tag={tag} onClick={onTagClick} active={activeTags.includes(tag)} isMajor={true} />
-      ))}
-      {sectionTags.map(tag => (
+      {majorTags.map(majorTag => {
+        const subheaders = getSubheaders(majorTag);
+        return (
+          <div key={majorTag} style={{ position: 'relative', marginRight: 8 }} ref={el => dropdownRefs.current[majorTag] = el}>
+            <span
+              className={`tag${activeTags.includes(majorTag) ? ' active' : ''} major`}
+              style={{
+                cursor: 'pointer',
+                marginBottom: 6,
+                background: activeTags.includes(majorTag) ? '#0056b3' : '#e0e0e0',
+                color: activeTags.includes(majorTag) ? '#fff' : '#222',
+                borderRadius: 20,
+                padding: '4px 16px',
+                fontSize: 15,
+                fontWeight: 700,
+                border: 'none',
+                display: 'inline-block',
+                position: 'relative',
+                userSelect: 'none',
+              }}
+              onClick={() => setOpenDropdown(openDropdown === majorTag ? null : majorTag)}
+            >
+              {majorTag} <span style={{ fontSize: 12, marginLeft: 4 }}>{openDropdown === majorTag ? '▲' : '▼'}</span>
+            </span>
+            {openDropdown === majorTag && (
+              <div style={{
+                position: 'absolute',
+                top: '110%',
+                left: 0,
+                background: '#fff',
+                border: '1px solid #ccc',
+                borderRadius: 8,
+                boxShadow: '0 4px 16px #0001',
+                zIndex: 10,
+                minWidth: 180,
+                padding: 0,
+              }}>
+                {/* Major tag as first option */}
+                <div
+                  style={{
+                    padding: '10px 18px',
+                    cursor: 'pointer',
+                    fontWeight: 700,
+                    color: activeTags.length === 1 && activeTags[0] === majorTag ? '#0056b3' : '#222',
+                    background: activeTags.length === 1 && activeTags[0] === majorTag ? '#e3f2fd' : 'transparent',
+                  }}
+                  onClick={() => {
+                    onTagClick(majorTag);
+                    setOpenDropdown(null);
+                  }}
+                >
+                  {majorTag} (All)
+                </div>
+                {subheaders.map((subheader, i) => {
+                  if (subheader === '__INDEPENDENT_SUBJUNCTIVE_NESTED__') {
+                    // Render nested option under Subjunctive Mood
+                    return (
+                      <div
+                        key="independent-subjunctive-nested"
+                        style={{
+                          padding: '10px 18px',
+                          cursor: 'pointer',
+                          color: activeTags.includes(majorTag) && activeTags.includes('Subjunctive Mood') && activeTags.includes('Independent Subjunctive') ? '#0056b3' : '#222',
+                          background: activeTags.includes(majorTag) && activeTags.includes('Subjunctive Mood') && activeTags.includes('Independent Subjunctive') ? '#e3f2fd' : 'transparent',
+                          marginLeft: 24,
+                          fontStyle: 'italic',
+                        }}
+                        onClick={() => {
+                          if (!activeTags.includes(majorTag)) onTagClick(majorTag);
+                          if (!activeTags.includes('Subjunctive Mood')) onTagClick('Subjunctive Mood');
+                          onTagClick('Independent Subjunctive');
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        ↳ Independent Subjunctive
+                      </div>
+                    );
+                  }
+                  if (subheader === '__UT_CLAUSES_NESTED__') {
+                    // Render nested option under Subjunctive Mood
+                    return (
+                      <div
+                        key="ut-clauses-nested"
+                        style={{
+                          padding: '10px 18px',
+                          cursor: 'pointer',
+                          color: activeTags.includes(majorTag) && activeTags.includes('Subjunctive Mood') && activeTags.includes('Ut Clauses') ? '#0056b3' : '#222',
+                          background: activeTags.includes(majorTag) && activeTags.includes('Subjunctive Mood') && activeTags.includes('Ut Clauses') ? '#e3f2fd' : 'transparent',
+                          marginLeft: 24,
+                          fontStyle: 'italic',
+                        }}
+                        onClick={() => {
+                          if (!activeTags.includes(majorTag)) onTagClick(majorTag);
+                          if (!activeTags.includes('Subjunctive Mood')) onTagClick('Subjunctive Mood');
+                          onTagClick('Ut Clauses');
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        ↳ Ut Clauses
+                      </div>
+                    );
+                  }
+                  if (subheader === '__RELATIVE_NESTED__') {
+                    // Render nested option under Subjunctive Mood
+                    return (
+                      <div
+                        key="relative-nested"
+                        style={{
+                          padding: '10px 18px',
+                          cursor: 'pointer',
+                          color: activeTags.includes(majorTag) && activeTags.includes('Subjunctive Mood') && activeTags.includes('Relative') ? '#0056b3' : '#222',
+                          background: activeTags.includes(majorTag) && activeTags.includes('Subjunctive Mood') && activeTags.includes('Relative') ? '#e3f2fd' : 'transparent',
+                          marginLeft: 24,
+                          fontStyle: 'italic',
+                        }}
+                        onClick={() => {
+                          if (!activeTags.includes(majorTag)) onTagClick(majorTag);
+                          if (!activeTags.includes('Subjunctive Mood')) onTagClick('Subjunctive Mood');
+                          onTagClick('Relative');
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        ↳ Relative
+                      </div>
+                    );
+                  }
+                  if (subheader === '__CONDITIONALS_NESTED__') {
+                    // Render nested option under Subjunctive Mood
+                    return (
+                      <div
+                        key="conditionals-nested"
+                        style={{
+                          padding: '10px 18px',
+                          cursor: 'pointer',
+                          color: activeTags.includes(majorTag) && activeTags.includes('Subjunctive Mood') && activeTags.includes('Conditionals') ? '#0056b3' : '#222',
+                          background: activeTags.includes(majorTag) && activeTags.includes('Subjunctive Mood') && activeTags.includes('Conditionals') ? '#e3f2fd' : 'transparent',
+                          marginLeft: 24,
+                          fontStyle: 'italic',
+                        }}
+                        onClick={() => {
+                          if (!activeTags.includes(majorTag)) onTagClick(majorTag);
+                          if (!activeTags.includes('Subjunctive Mood')) onTagClick('Subjunctive Mood');
+                          onTagClick('Conditionals');
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        ↳ Conditionals
+                      </div>
+                    );
+                  }
+                  if (subheader === '__CONDITIONALS_INDICATIVE_NESTED__') {
+                    // Render nested option under Indicative Mood
+                    return (
+                      <div
+                        key="conditionals-indicative-nested"
+                        style={{
+                          padding: '10px 18px',
+                          cursor: 'pointer',
+                          color: activeTags.includes(majorTag) && activeTags.includes('Indicative Mood') && activeTags.includes('Conditionals') ? '#0056b3' : '#222',
+                          background: activeTags.includes(majorTag) && activeTags.includes('Indicative Mood') && activeTags.includes('Conditionals') ? '#e3f2fd' : 'transparent',
+                          marginLeft: 24,
+                          fontStyle: 'italic',
+                        }}
+                        onClick={() => {
+                          if (!activeTags.includes(majorTag)) onTagClick(majorTag);
+                          if (!activeTags.includes('Indicative Mood')) onTagClick('Indicative Mood');
+                          onTagClick('Conditionals');
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        ↳ Conditionals
+                      </div>
+                    );
+                  }
+                  if (subheader === '__CUM_CLAUSES_SUBJUNCTIVE_NESTED__') {
+                    // Render nested option under Subjunctive Mood
+                    return (
+                      <div
+                        key="cum-clauses-subjunctive-nested"
+                        style={{
+                          padding: '10px 18px',
+                          cursor: 'pointer',
+                          color: activeTags.includes(majorTag) && activeTags.includes('Subjunctive Mood') && activeTags.includes('Cum Clauses') ? '#0056b3' : '#222',
+                          background: activeTags.includes(majorTag) && activeTags.includes('Subjunctive Mood') && activeTags.includes('Cum Clauses') ? '#e3f2fd' : 'transparent',
+                          marginLeft: 24,
+                          fontStyle: 'italic',
+                        }}
+                        onClick={() => {
+                          if (!activeTags.includes(majorTag)) onTagClick(majorTag);
+                          if (!activeTags.includes('Subjunctive Mood')) onTagClick('Subjunctive Mood');
+                          onTagClick('Cum Clauses');
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        ↳ Cum Clauses
+                      </div>
+                    );
+                  }
+                  if (subheader === '__CUM_CLAUSES_INDICATIVE_NESTED__') {
+                    // Render nested option under Indicative Mood
+                    return (
+                      <div
+                        key="cum-clauses-indicative-nested"
+                        style={{
+                          padding: '10px 18px',
+                          cursor: 'pointer',
+                          color: activeTags.includes(majorTag) && activeTags.includes('Indicative Mood') && activeTags.includes('Cum Clauses') ? '#0056b3' : '#222',
+                          background: activeTags.includes(majorTag) && activeTags.includes('Indicative Mood') && activeTags.includes('Cum Clauses') ? '#e3f2fd' : 'transparent',
+                          marginLeft: 24,
+                          fontStyle: 'italic',
+                        }}
+                        onClick={() => {
+                          if (!activeTags.includes(majorTag)) onTagClick(majorTag);
+                          if (!activeTags.includes('Indicative Mood')) onTagClick('Indicative Mood');
+                          onTagClick('Cum Clauses');
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        ↳ Cum Clauses
+                      </div>
+                    );
+                  }
+                  if (subheader === '__INDIRECT_DISCOURSE_INFINITIVE_NESTED__') {
+                    // Render nested option under Infinitive Mood
+                    return (
+                      <div
+                        key="indirect-discourse-infinitive-nested"
+                        style={{
+                          padding: '10px 18px',
+                          cursor: 'pointer',
+                          color: activeTags.includes(majorTag) && activeTags.includes('Infinitive Mood') && activeTags.includes('Indirect Discourse') ? '#0056b3' : '#222',
+                          background: activeTags.includes(majorTag) && activeTags.includes('Infinitive Mood') && activeTags.includes('Indirect Discourse') ? '#e3f2fd' : 'transparent',
+                          marginLeft: 24,
+                          fontStyle: 'italic',
+                        }}
+                        onClick={() => {
+                          if (!activeTags.includes(majorTag)) onTagClick(majorTag);
+                          if (!activeTags.includes('Infinitive Mood')) onTagClick('Infinitive Mood');
+                          onTagClick('Indirect Discourse');
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        ↳ Indirect Discourse
+                      </div>
+                    );
+                  }
+                  if (subheader === '__INDIRECT_DISCOURSE_SUBJUNCTIVE_NESTED__') {
+                    // Render nested option under Subjunctive Mood
+                    return (
+                      <div
+                        key="indirect-discourse-subjunctive-nested"
+                        style={{
+                          padding: '10px 18px',
+                          cursor: 'pointer',
+                          color: activeTags.includes(majorTag) && activeTags.includes('Subjunctive Mood') && activeTags.includes('Indirect Discourse') ? '#0056b3' : '#222',
+                          background: activeTags.includes(majorTag) && activeTags.includes('Subjunctive Mood') && activeTags.includes('Indirect Discourse') ? '#e3f2fd' : 'transparent',
+                          marginLeft: 24,
+                          fontStyle: 'italic',
+                        }}
+                        onClick={() => {
+                          if (!activeTags.includes(majorTag)) onTagClick(majorTag);
+                          if (!activeTags.includes('Subjunctive Mood')) onTagClick('Subjunctive Mood');
+                          onTagClick('Indirect Discourse');
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        ↳ Indirect Discourse
+                      </div>
+                    );
+                  }
+                  return (
+                    <div
+                      key={subheader}
+                      style={{
+                        padding: '10px 18px',
+                        cursor: 'pointer',
+                        color: activeTags.includes(majorTag) && activeTags.includes(subheader) ? '#0056b3' : '#222',
+                        background: activeTags.includes(majorTag) && activeTags.includes(subheader) ? '#e3f2fd' : 'transparent',
+                      }}
+                      onClick={() => {
+                        // Filter by both major tag and subheader
+                        if (activeTags.includes(majorTag) && activeTags.includes(subheader)) {
+                          // Remove subheader if already selected
+                          onTagClick(subheader);
+                        } else {
+                          if (!activeTags.includes(majorTag)) onTagClick(majorTag);
+                          onTagClick(subheader);
+                        }
+                        setOpenDropdown(null);
+                      }}
+                    >
+                      {subheader}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
+      {/* Show section tags that are not subheaders of any major tag */}
+      {sectionTags.filter(tag => !majorTags.some(majorTag => getSubheaders(majorTag).includes(tag))).map(tag => (
         <Tag key={tag} tag={tag} onClick={onTagClick} active={activeTags.includes(tag)} isMajor={false} />
       ))}
       {activeTags.length > 0 && (
@@ -140,115 +502,6 @@ function TagBar({ tags, activeTags, onTagClick }) {
   );
 }
 
-function Sidebar({ data, onSectionClick, searchTerm, setSearchTerm, activeSection }) {
-  const [majorSections, setMajorSections] = useState({});
-
-  useEffect(() => {
-    if (!data || data.length === 0) return;
-    
-    // Group sections by major tag
-    const grouped = {};
-    data.forEach(section => {
-      if (!section.points || section.points.length === 0) return;
-      let majorTag = section.points[0].tags.find(tag => MAJOR_TAGS.includes(tag));
-      if (!majorTag && MAJOR_TAGS.includes(section.title)) majorTag = section.title;
-      if (!majorTag) return;
-      
-      if (!grouped[majorTag]) grouped[majorTag] = [];
-      grouped[majorTag].push(section);
-    });
-    setMajorSections(grouped);
-  }, [data]);
-
-  const filteredSections = Object.entries(majorSections).map(([majorTag, sections]) => {
-    const filteredSubsections = sections.filter(section => 
-      !searchTerm || 
-      section.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      section.points.some(point => 
-        point.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (point.description && point.description.toLowerCase().includes(searchTerm.toLowerCase()))
-      )
-    );
-    
-    return { majorTag, sections: filteredSubsections };
-  }).filter(({ sections }) => sections.length > 0);
-
-  return (
-    <div style={{
-      width: 300,
-      height: '100vh',
-      position: 'fixed',
-      left: 0,
-      top: 0,
-      background: '#f8f9fa',
-      borderRight: '1px solid #dee2e6',
-      overflowY: 'auto',
-      padding: '20px 0',
-      zIndex: 1000,
-    }}>
-      <div style={{ padding: '0 20px 20px 20px', borderBottom: '1px solid #dee2e6' }}>
-        <h3 style={{ margin: '0 0 16px 0', color: '#495057', fontSize: 18 }}>Navigation</h3>
-        <input
-          type="text"
-          placeholder="Search grammar points..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            width: '100%',
-            padding: '8px 12px',
-            border: '1px solid #ced4da',
-            borderRadius: 4,
-            fontSize: 14,
-            outline: 'none',
-          }}
-        />
-      </div>
-      
-      <div style={{ padding: '20px' }}>
-        {filteredSections.map(({ majorTag, sections }) => (
-          <div key={majorTag} style={{ marginBottom: 24 }}>
-            <h4 style={{
-              margin: '0 0 12px 0',
-              color: '#0d47a1',
-              fontSize: 16,
-              fontWeight: 700,
-              cursor: 'pointer',
-              padding: '8px 12px',
-              borderRadius: 4,
-              background: activeSection === majorTag ? '#e3f2fd' : 'transparent',
-              transition: 'background 0.2s',
-            }}
-            onClick={() => onSectionClick(majorTag)}
-            >
-              {majorTag}
-            </h4>
-            <div style={{ marginLeft: 16 }}>
-              {sections.map(section => (
-                <div
-                  key={section.title}
-                  style={{
-                    padding: '6px 12px',
-                    marginBottom: 4,
-                    fontSize: 14,
-                    color: '#495057',
-                    cursor: 'pointer',
-                    borderRadius: 4,
-                    background: activeSection === section.title ? '#e9ecef' : 'transparent',
-                    transition: 'background 0.2s',
-                  }}
-                  onClick={() => onSectionClick(section.title)}
-                >
-                  {section.title}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function App() {
   const [data, setData] = useState([]);
   const [activeTags, setActiveTags] = useState([]);
@@ -256,7 +509,6 @@ function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeSection, setActiveSection] = useState(null);
 
   useEffect(() => {
     fetch('./grammar_appendix.json')
@@ -296,39 +548,34 @@ function App() {
     }
   };
 
-  const handleSectionClick = (sectionTitle) => {
-    setActiveSection(sectionTitle);
-    
-    // First try to find the section header
-    let element = document.getElementById(`section-${sectionTitle.replace(/\s+/g, '-')}`);
-    
-    // If no header found, try to find the first grammar point in that section
-    if (!element) {
-      // Find the section in the data
-      const section = data.find(s => s.title === sectionTitle);
-      if (section && section.points && section.points.length > 0) {
-        // Create a temporary ID for the first grammar point
-        const firstPointId = `point-${section.points[0].number}-${section.points[0].title.replace(/\s+/g, '-')}`;
-        element = document.getElementById(firstPointId);
-      }
-    }
-    
-    // If still no element found, try to find the major section header
-    if (!element) {
-      // Find which major tag this section belongs to
-      const section = data.find(s => s.title === sectionTitle);
-      if (section && section.points && section.points.length > 0) {
-        let majorTag = section.points[0].tags.find(tag => MAJOR_TAGS.includes(tag));
-        if (!majorTag && MAJOR_TAGS.includes(section.title)) majorTag = section.title;
-        if (majorTag) {
-          element = document.getElementById(`section-${majorTag.replace(/\s+/g, '-')}`);
+  // Helper: filter points by tags and search term (now with advanced search)
+  const filterPoints = (points) => {
+    // Advanced search: tag:TAGNAME (case-insensitive, supports multiple tags)
+    const tagPattern = /tag:([\w\- ]+)/gi;
+    const tagMatches = [...searchTerm.matchAll(tagPattern)];
+    const searchTags = tagMatches.map(m => m[1].trim()).filter(Boolean);
+    return points.filter(point => {
+      // Advanced tag search (AND logic for all specified tags)
+      if (searchTags.length > 0) {
+        if (!point.tags || !searchTags.every(tag => point.tags.map(t => t.toLowerCase()).includes(tag.toLowerCase()))) {
+          return false;
         }
       }
-    }
-    
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+      // Tag filter (AND logic)
+      if (activeTags.length > 0 && (!point.tags || !activeTags.every(tag => point.tags.includes(tag)))) {
+        return false;
+      }
+      // Search filter (ignore tag:... in search text)
+      const cleanedSearch = searchTerm.replace(tagPattern, '').trim();
+      if (cleanedSearch !== '') {
+        const term = cleanedSearch.toLowerCase();
+        const inTitle = point.title && point.title.toLowerCase().includes(term);
+        const inDesc = point.description && point.description.toLowerCase().includes(term);
+        const inExamples = point.examples && point.examples.some(ex => ex.toLowerCase().includes(term));
+        if (!inTitle && !inDesc && !inExamples) return false;
+      }
+      return true;
+    });
   };
 
   if (loading) return <div style={{ padding: 40, textAlign: 'center' }}>Loading grammar appendix...</div>;
@@ -339,70 +586,76 @@ function App() {
   const majorSections = {};
   data.forEach(section => {
     if (!section.points || section.points.length === 0) return;
-    // Use the first major tag found in the section's points, or the section title if it's a major tag
     let majorTag = section.points[0].tags.find(tag => MAJOR_TAGS.includes(tag));
     if (!majorTag && MAJOR_TAGS.includes(section.title)) majorTag = section.title;
     if (!majorTag) return;
-    
-    // If the section title is the same as the major tag, don't show it as a subheader
-    // If the section title is different from the major tag, it will be shown as a subheader
     if (!majorSections[majorTag]) majorSections[majorTag] = [];
     majorSections[majorTag].push(section);
   });
 
   return (
-    <div className="App" style={{ display: 'flex', fontFamily: 'system-ui, sans-serif' }}>
-      <Sidebar 
-        data={data} 
-        onSectionClick={handleSectionClick} 
-        searchTerm={searchTerm} 
-        setSearchTerm={setSearchTerm}
-        activeSection={activeSection}
-      />
-      
-      <div style={{ marginLeft: 300, flex: 1, maxWidth: 'calc(100vw - 300px)' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto', padding: 24 }}>
-          <h1 style={{ textAlign: 'center' }}>Latin Grammar Appendix</h1>
-          <TagBar tags={allTags} activeTags={activeTags} onTagClick={handleTagClick} />
-          {activeTags.length === 0 ? (
-            // Show normal structure when no filters are active
-            MAJOR_TAGS.map(majorTag => (
-              majorSections[majorTag] && majorSections[majorTag].length > 0 && (
-                <div key={majorTag} style={{ marginBottom: 48 }}>
-                  <h2 
-                    id={`section-${majorTag.replace(/\s+/g, '-')}`}
-                    style={{ fontSize: 36, color: '#0d47a1', fontWeight: 900, margin: '48px 0 24px 0', letterSpacing: '-2px', borderBottom: '3px solid #90caf9', paddingBottom: 8 }}
-                  >
-                    {majorTag}
-                  </h2>
-                  {majorSections[majorTag].map(section => (
-                    <Section key={section.title} section={section} onTagClick={handleTagClick} activeTags={activeTags} showSectionHeader={section.title !== majorTag} majorTag={majorTag} />
-                  ))}
-                </div>
-              )
-            ))
-          ) : (
-            // Show only filtered grammar points when filters are active
-            <div style={{ marginTop: 24 }}>
-              <h3 style={{ margin: '0 0 24px 0', color: '#495057', fontSize: 20 }}>
-                Showing grammar points with tags: {activeTags.join(', ')}
-              </h3>
-              {data.map(section => 
-                section.points && section.points
-                  .filter(point => point.tags && activeTags.every(tag => point.tags.includes(tag)))
-                  .map(point => (
-                    <GrammarPoint key={point.number + point.title} point={point} onTagClick={handleTagClick} activeTags={activeTags} />
-                  ))
-              )}
+    <div className="App" style={{ fontFamily: 'system-ui, sans-serif', maxWidth: 800, margin: '0 auto', padding: 24 }}>
+      <h1 style={{ textAlign: 'center' }}>Latin Grammar Appendix</h1>
+      {/* Search bar */}
+      <div style={{ margin: '0 0 18px 0', display: 'flex', justifyContent: 'center' }}>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+          placeholder="Search grammar points..."
+          style={{
+            width: '100%',
+            maxWidth: 400,
+            padding: '8px 14px',
+            fontSize: 16,
+            border: '1px solid #bbb',
+            borderRadius: 6,
+            outline: 'none',
+            boxShadow: '0 1px 4px #0001',
+          }}
+        />
+      </div>
+      <div style={{ textAlign: 'center', marginTop: -12, marginBottom: 12, color: '#666', fontSize: 13 }}>
+        <span style={{ background: '#f5f5f5', padding: '2px 10px', borderRadius: 6 }}>
+          Tip: Use <b>tag:Conditionals</b> or <b>tag:Relative</b> in your search to filter by tags. Combine multiple tags with spaces.
+        </span>
+      </div>
+      <TagBar tags={allTags} activeTags={activeTags} onTagClick={handleTagClick} data={data} />
+      {activeTags.length === 0 && searchTerm.trim() === '' ? (
+        MAJOR_TAGS.map(majorTag => (
+          majorSections[majorTag] && majorSections[majorTag].length > 0 && (
+            <div key={majorTag} style={{ marginBottom: 48 }}>
+              <h2 
+                id={`section-${majorTag.replace(/\s+/g, '-')}`}
+                style={{ fontSize: 36, color: '#0d47a1', fontWeight: 900, margin: '48px 0 24px 0', letterSpacing: '-2px', borderBottom: '3px solid #90caf9', paddingBottom: 8 }}
+              >
+                {majorTag}
+              </h2>
+              {majorSections[majorTag].map(section => (
+                <Section key={section.title} section={section} onTagClick={handleTagClick} activeTags={activeTags} showSectionHeader={section.title !== majorTag} majorTag={majorTag} filterPoints={filterPoints} />
+              ))}
             </div>
+          )
+        ))
+      ) : (
+        <div style={{ marginTop: 24 }}>
+          {(activeTags.length > 0 || searchTerm.trim() !== '') && (
+            <h3 style={{ margin: '0 0 24px 0', color: '#495057', fontSize: 20 }}>
+              Showing grammar points{activeTags.length > 0 ? ` with tags: ${activeTags.join(', ')}` : ''}{searchTerm.trim() !== '' ? ` matching: "${searchTerm}"` : ''}
+            </h3>
           )}
-          {activeTags.length > 0 && (
-            <div style={{ marginTop: 32, textAlign: 'center' }}>
-              <button onClick={() => setActiveTags([])} style={{ padding: '6px 16px', borderRadius: 4, border: '1px solid #ccc', background: '#f8f8f8', cursor: 'pointer' }}>Clear all filters</button>
-            </div>
+          {data.map(section => 
+            filterPoints(section.points || []).map(point => (
+              <GrammarPoint key={point.number + point.title} point={point} onTagClick={handleTagClick} activeTags={activeTags} />
+            ))
           )}
         </div>
-      </div>
+      )}
+      {(activeTags.length > 0 || searchTerm.trim() !== '') && (
+        <div style={{ marginTop: 32, textAlign: 'center' }}>
+          <button onClick={() => { setActiveTags([]); setSearchTerm(''); }} style={{ padding: '6px 16px', borderRadius: 4, border: '1px solid #ccc', background: '#f8f8f8', cursor: 'pointer' }}>Clear all filters</button>
+        </div>
+      )}
     </div>
   );
 }
