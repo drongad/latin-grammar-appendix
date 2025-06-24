@@ -755,7 +755,8 @@
         ],
         "tags": [
           "Verb",
-          "Indicative Mood"
+          "Indicative Mood",
+          "Conditionals"
         ]
       },
       {
@@ -768,7 +769,8 @@
         ],
         "tags": [
           "Verb",
-          "Indicative Mood"
+          "Indicative Mood",
+          "Cum Clauses"
         ]
       },
       {
@@ -836,7 +838,8 @@
         ],
         "tags": [
           "Verb",
-          "Indicative Mood"
+          "Indicative Mood",
+          "Cum Clauses"
         ]
       }
     ]
@@ -861,7 +864,8 @@
         "examples": [],
         "tags": [
           "Verb",
-          "Infinitive Mood"
+          "Infinitive Mood",
+          "Indirect Discourse"
         ]
       },
       {
@@ -921,7 +925,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Cum Clauses"
         ]
       },
       {
@@ -934,7 +939,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Cum Clauses"
         ]
       },
       {
@@ -947,7 +953,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Cum Clauses"
         ]
       },
       {
@@ -960,7 +967,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Indirect Discourse"
         ]
       },
       {
@@ -973,21 +981,23 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Ut Clauses",
+          "Indirect Discourse"
         ]
       },
       {
         "number": "73",
-        "title": "Relative Purpose Clause & quo Clause of Purpose with Comparative Word (LUD 55; BG II.17)",
-        "description": "The subjunctive is used in relative clauses expressing purpose; the governing verb is often mitto or a compound of that verb.\nWhen a purpose clause contains a comparative word, it is normally introduced by quo instead of ut. Such clauses are translated in the same ways as an adverbial purpose clause (#72 above).",
+        "title": "Relative Purpose Clause (LUD 55)",
+        "description": "The subjunctive is used in a relative clause expressing purpose.",
         "examples": [
-          "Nuntium mittit qui Romanos moneat.  He sends a messenger \t(in order) to warn the Romans.",
-          "Fossam effodiunt quo facilius exercitum hostium impediant.",
-          "They dig a trench in order to impede more easily the army of the \tenemy."
+          "Legatos mittit qui pacem petant.",
+          "He sends envoys to seek peace (who may seek peace)."
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Relative"
         ]
       },
       {
@@ -1000,7 +1010,9 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Ut Clauses",
+          "Indirect Discourse"
         ]
       },
       {
@@ -1013,7 +1025,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Ut Clauses"
         ]
       },
       {
@@ -1038,24 +1051,23 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Ut Clauses",
+          "Indirect Discourse"
         ]
       },
       {
         "number": "78",
-        "title": "Indirect Dependent Clause (IDC) / Subordinate Clause in Indirect Discourse (LUD 64)",
-        "description": "Subordinate (dependent) clauses which form a part of indirect discourse have their verbs in the subjunctive (most often relative, quod causal, and conditional clauses).  Indirect discourse includes the following:  indirect statement, adverbial and relative purpose, substantive clause of volition, clause of fearing, and indirect question.\nThis use of the subjunctive indicates that the subordinate clause is part of what the subject said or thought, i.e. is actually part of the reported speech, thought, order, etc.  Compare the Clause of Added Fact (above #60).",
+        "title": "Indirect Dependent Clause (LUD 60)",
+        "description": "The subjunctive is used in a dependent clause (introduced by a relative or conjunction) when the clause is part of an indirect statement or question.",
         "examples": [
-          "Direct Statement:",
-          "Silva [in qua puer est] multa pericula habet.",
-          "The forest [in which the boy is] has many dangers.",
-          "Indirect Statement:",
-          "Dicit silvam [in qua puer sit] multa pericula habere.",
-          "She says that the forest [in which the boy is] has many dangers."
+          "Rogavit quid ageretur.",
+          "He asked what was being done."
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Relative"
         ]
       },
       {
@@ -1075,22 +1087,22 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Ut Clauses"
         ]
       },
       {
         "number": "80",
-        "title": "Relative Clause of Characteristic (BG I.3)",
-        "description": "A relative clause describing the antecedent as the sort of person or thing that behaves, or would behave, in a certain way in certain circumstances has its verb in the subjunctive.  In an equivalent English expression we might tend to use the phrase of the sort.\nCLUES:  The antecedent of the relative is usually indefinite, interrogative or negative.  The most common main clauses are nemo est qui (there is no one who), quis est qui? (who is there who?), nihil est quod (there is nothing which), sunt qui (there are those who).",
+        "title": "Relative Clause of Characteristic (LUD 62)",
+        "description": "The subjunctive is used in a relative clause to indicate the sort of person or thing referred to (characteristic).",
         "examples": [
-          "Regular Relative:  Video puerum quem amo.",
-          "I see the boy whom I love.",
-          "Rel. Charac.:  Nemo est quem amem.",
-          "There is no one (of the sort) whom I love."
+          "Sunt qui hoc faciant.",
+          "There are (those) who would do this."
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Relative"
         ]
       },
       {
@@ -1132,11 +1144,12 @@
         "examples": [
           "Quid facio?  What am I doing?",
           "Quid dicerem, What was I to say?",
-          "Tu ut mentem umquam mutes?  You ever change your mind? \t\t\t\t\t\t\t\t[strongly implying of course not!]"
+          "Tu ut mentem umquam mutes?  You ever change your mind? \t\t\t\t\t\t\t[strongly implying of course not!]"
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Independent Subjunctive"
         ]
       },
       {
@@ -1177,20 +1190,22 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Independent Subjunctive"
         ]
       },
       {
         "number": "87",
-        "title": "Relative Result Clause (CAT I.5)",
-        "description": "A relative clause with the subjunctive may express result.  Such clauses may be translated in the same way as the adverbial result clause (#73).  (The relative result clause overlaps with the clause of characteristic but usually is foreshadowed by a 'so' word in the governing clause.)",
+        "title": "Relative Result Clause (LUD 59)",
+        "description": "The subjunctive is used in a relative clause expressing result.",
         "examples": [
-          "Nihil est tam certum quod numquam dubitetur.",
-          "Nothing is so certain that it is never doubted."
+          "Tam multi erant qui hoc facerent.",
+          "There were so many who did this."
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Relative"
         ]
       },
       {
@@ -1233,7 +1248,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Independent Subjunctive"
         ]
       },
       {
@@ -1247,7 +1263,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Independent Subjunctive"
         ]
       },
       {
@@ -1279,41 +1296,44 @@
       },
       {
         "number": "94",
-        "title": "Present Contrary to Fact (CAT I.17)",
-        "description": "A condition contrary to fact in present time takes the IMPERFECT SUBJUNCTIVE in both clauses.",
+        "title": "Present Contrary to Fact (LUD 66)",
+        "description": "The imperfect subjunctive is used in both the protasis and apodosis of a present contrary-to-fact conditional sentence.",
         "examples": [
-          "Sapientia non expeteretur, si nihil efficeret.",
-          "Philosophy would not be desired, if it accomplished nothing."
+          "Si hoc faceret, felix esset.",
+          "If he were doing this, he would be happy."
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Conditionals"
         ]
       },
       {
         "number": "95",
-        "title": "Past Contrary to Fact (C+P 8; CAT I.21)",
-        "description": "A condition contrary to fact in past time takes the PLUPERFECT SUBJUNCTIVE in both clauses.",
+        "title": "Past Contrary to Fact (LUD 67)",
+        "description": "The pluperfect subjunctive is used in both the protasis and apodosis of a past contrary-to-fact conditional sentence.",
         "examples": [
-          "Si hoc dixisses, erravisses.",
-          "If you had said this, you would have erred."
+          "Si hoc fecisset, felix fuisset.",
+          "If he had done this, he would have been happy."
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Conditionals"
         ]
       },
       {
         "number": "96",
-        "title": "Future Less Vivid (CAT I.19)",
-        "description": "A condition with the PRESENT SUBJUNCTIVE in both clauses represents a future action as less likely to occur than does the future more vivid condition (which uses the indicative; see #56 above).  Such conditions are also known as \"should-would conditions\", a name which indicates the equivalent English translation.\nSupine (C+P 10; CAT I.10 & 29)",
+        "title": "Future Less Vivid (LUD 68)",
+        "description": "The present subjunctive is used in both the protasis and apodosis of a future less vivid conditional sentence.",
         "examples": [
-          "Si discedam, tristis sis.",
-          "If I should leave, you would be sad."
+          "Si hoc faciat, felix sit.",
+          "If he should do this, he would be happy."
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Conditionals"
         ]
       },
       {
@@ -1347,7 +1367,7 @@
         ]
       },
       {
-        "number": "97",
+        "number": "99",
         "title": "The gerundive is a verbal adjective with 1st/2nd declension endings:  amandus, -a, -um, etc.  One use of the gerundive is the passive periphrastic (see #101 below). The other use is to modify a noun. In this latter use, the gerundive should be translated as _____ -ing, and the accompanying noun should be translated as its direct object (e.g., ad libros legendos, for the purpose of reading books).  Like the gerund, the gerundive is often used to express purpose.",
         "description": "",
         "examples": [
@@ -1359,19 +1379,13 @@
           "Verb",
           "Subjunctive Mood"
         ]
-      }
-    ]
-  },
-  {
-    "title": "Participles",
-    "points": [
+      },
       {
         "number": "100",
         "title": "Active Periphrastic (LUD 50)",
         "description": "The combination of a future active participle and a form of sum says that someone is about to act or going to act.  Mihi multa dicturus est.  He is about to say  / going to say many things to me.  Notice that the active periphrastic is very different from the passive periphrastic (#99):  it uses a different participle and does not express obligation.",
         "examples": [],
         "tags": [
-          "Participles",
           "Participles"
         ]
       },
@@ -1391,35 +1405,21 @@
           "You must read this book."
         ],
         "tags": [
-          "Participles",
           "Participles"
         ]
       },
       {
         "number": "102",
-        "title": "Use and Translation of Participles (LUD 26, 27, 36)",
-        "description": "The participle is a verbal adjective, i.e. it has some qualities of verbs and some of adjectives.  Although the literal translation of a participle in a Latin sentence is an important first step, it is normally insufficient; in general, participles should be translated by a subordinate clause in English.  Consider the following sentence:\nA literal translation (The soldiers saved the man having been wounded by an arrow) is unclear and does not express the thought of the Latin in standard English.  Instead translate in one of the following ways:\nThe soldiers saved the man after he had been wounded by an arrow.\nThe soldiers saved the man when he had been wounded by an arrow.\nThe soldiers saved the man who had been wounded by an arrow.\nOther types of subordinate clauses useful for translating a perfect participle are those introduced by since, although, and if.  Learn the following menu, in order that you can refer to it whenever you encounter a participle:\nThe TENSE of a participle shows only relative time:  the present participle shows an action going on at the same time as the governing verb, the perfect an action that has happened before, and the future an action that will happen after (though the use of the future active participle is limited almost entirely to the active periphrastic [#100] and the fut. active infinitive in indirect statement [#64 & 65]).  Consider the following sentences:\nPRESENT Participle:\nPERFECT Participle:\nPARTICIPLES IN ABLATIVE ABSOLUTE\nPRESENT\nHostibus appropinquantibus, moenia defenditis.\nWhile / Since the enemy is approaching, you defend the walls.\nHostibus appropinquantibus, moenia defendistis.\nWhile / Since the enemy was approaching, you defended the walls.\nPERFECT\nHostibus visis moenia defendere paramus.\nSince the enemy has been seen, we are preparing to defend the walls.\nHostibus visis moenia defendere parabamus.\nSince the enemy had been seen, we prepared to defend the walls.",
+        "title": "Relative Causal Clause (LUD 63)",
+        "description": "The subjunctive is used in a relative clause expressing cause.",
         "examples": [
-          "Milites virum sagitta vulneratum servaverunt.",
-          "Femina virum ambulantem vocat.",
-          "The woman calls the man who is walking or while he is walking.",
-          "SAME TIME",
-          "Femina virum ambulantem vocavit.",
-          "The woman called the man who was walking or while he was \twalking.\t\t\t\t\t\t\tSAME TIME",
-          "Femina virum amissum petit.",
-          "The woman seeks the man who was lost or who has been lost.",
-          "TIME BEFORE",
-          "Femina virum amissum petivit.",
-          "The woman sought the man who had been lost.",
-          "TIME BEFORE",
-          "SAME TIME",
-          "SAME TIME",
-          "TIME BEFORE",
-          "TIME BEFORE"
+          "Gratias egit quod adfuisset.",
+          "He gave thanks because he had been present."
         ],
         "tags": [
-          "Participles",
-          "Participles"
+          "Verb",
+          "Subjunctive Mood",
+          "Relative"
         ]
       }
     ]
@@ -1440,7 +1440,6 @@
           "Everyone will have to come to this place."
         ],
         "tags": [
-          "Voice",
           "Voice"
         ]
       }
