@@ -7,8 +7,8 @@
         "title": "Agreement of Verb (LUD 1)",
         "description": "A verb agrees with its subject in person and number.",
         "examples": [
-          "Puer ambulat.  The boy walks.",
-          "Pueri ambulant.  The boys walk."
+          "Puer ambulat – The boy walks.",
+          "Pueri ambulant – The boys walk."
         ],
         "tags": [
           "Agreement and Basic Constructions"
@@ -100,9 +100,9 @@
       {
         "number": "8",
         "title": "Partitive Genitive (or Gen. of the Whole) (LUD 48)",
-        "description": "The genitive is often used with superlative adjectives and words of indefinite quantity, e.g. aliquid, to denote the whole out of which some part is taken.  Thus in many cases where English would use an adjective-noun combination in grammatical agreement (e.g., more money; no food) Latin prefers adj-noun or noun-noun with the second noun in the genitive case, e.g., plus pecuniae, more money (literally, more of money); nihil cibi, no food (nothing of food).  Indefinite words commonly used with this type of genitive are nihil, plus, minus, tantum, quantum, quid, aliquid, quicquam and satis.\nOther examples:\tmagna pars Romanorum,",
+        "description": "The genitive is often used with superlative adjectives and words of indefinite quantity, e.g. aliquid, to denote the whole out of which some part is taken.  Thus in many cases where English would use an adjective-noun combination in grammatical agreement (e.g., more money; no food) Latin prefers adj-noun or noun-noun with the second noun in the genitive case, e.g., plus pecuniae, more money (literally, more of money); nihil cibi, no food (nothing of food).  Indefinite words commonly used with this type of genitive are nihil, plus, minus, tantum, quantum, quid, aliquid, quicquam and satis.",
         "examples": [
-          "a large part of the Romans.",
+          "magna pars Romanorum – a large part of the Romans.",
           "altissima puellarum, the tallest of the girls"
         ],
         "tags": [
@@ -113,8 +113,10 @@
       {
         "number": "9",
         "title": "Objective Genitive (BG I.3)",
-        "description": "The genitive is used together with nouns whose meaning implies feeling or action, when in English we use such action nouns with another noun preceded by \"of\", e.g. amor patriae, love of one's country.  The other noun typically calls to mind a verbal action, and the objective genitive supplies an object, as it were, for that verbal action.  In such uses, the noun in the genitive would be in the accusative if the action noun became its corresponding verb:  amor patriae ?  amat patriam.  (See the comparison with subjective genitive in #12 below.)",
-        "examples": [],
+        "description": "The genitive is used together with nouns whose meaning implies feeling or action, when in English we use such action nouns with another noun preceded by \"of\", e.g. amor patriae, love of one's country.  The other noun typically calls to mind a verbal action, and the objective genitive supplies an object, as it were, for that verbal action.  In such uses, the noun in the genitive would be in the accusative if the action noun became its corresponding verb:  amor patriae ->  amat patriam.  (See the comparison with subjective genitive in #12 below.)",
+        "examples": [
+          "amor patriae, love of one's country"
+        ],
         "tags": [
           "Noun",
           "Genitive Case"
@@ -150,16 +152,15 @@
       {
         "number": "12",
         "title": "Subjective Genitive (CAT I.1, BG I.7)",
-        "description": "The genitive is used with nouns whose meaning implies action, when in English we use such actions nouns with another noun preceded by \"of\" or the noun with apostrophe + s ('s), e.g. amor matris, the love of the mother, the mother's love.  In such uses, the noun in the genitive would be the nominative subject if the action noun became its corresponding verb:  mater amat (puellam).",
+        "description": "The genitive is used with nouns whose meaning implies action, when in English we use such actions nouns with another noun preceded by 'of' or the noun with apostrophe + s ('s), e.g. amor matris, the love of the mother, the mother's love.  In such uses, the noun in the genitive would be the nominative subject if the action noun became its corresponding verb:  mater amat (puellam).",
         "examples": [
-          "Objective Genitive (#9 above)\t\tSubjective Genitive",
-          "cupiditas regni\t\t\t\t\ttimor puerorum",
-          "desire for the throne\t\t\t\tthe fear of the children \t\t\t\t\t\t\t\t\t\t(the children's fear)",
-          "imperium gentium rule over nations\tamor matris",
-          "a mother's love",
-          "odium tyrannorum hatred of tyrants\tadventus Caesaris",
-          "the arrival of Caesar",
-          "dux peditum the general of the infantry"
+          "cupiditas regni – desire for the throne (Objective Genitive)",
+          "timor puerorum – the fear of the children (Subjective Genitive)",
+          "imperium gentium – rule over nations (Objective Genitive)",
+          "amor matris – a mother's love (Subjective Genitive)",
+          "odium tyrannorum – hatred of tyrants (Objective Genitive)",
+          "adventus Caesaris – the arrival of Caesar (Subjective Genitive)",
+          "dux peditum – the general of the infantry (Objective Genitive)"
         ],
         "tags": [
           "Noun",
@@ -182,8 +183,10 @@
       {
         "number": "14",
         "title": "Appositional Genitive (CAT I.12)",
-        "description": "The genitive may modify another noun as if it were in apposition to that noun (i.e. in the same case).  E.g. poena mortis, the penalty of death (the penalty = death).  Compare English expressions, such as the crime of robbery, a reward of money.",
-        "examples": [],
+        "description": "The genitive may modify another noun as if it were in apposition to that noun (i.e. in the same case).  Compare English expressions, such as the crime of robbery, a reward of money.",
+        "examples": [
+          "poena mortis – the penalty of death (the penalty = death)"
+        ],
         "tags": [
           "Noun",
           "Genitive Case"
@@ -223,12 +226,10 @@
       {
         "number": "17",
         "title": "Dative with Special Intransitive Verbs (LUD 55)",
-        "description": "Certain intransitive verbs may govern dative objects, which are best translated as direct objects:  mihi nocuerunt, they harmed me; hostibus resistimus, we are opposing the enemy.  Some more frequently seen intransitive verbs that use a dative object are the following:",
+        "description": "Certain intransitive verbs may govern dative objects, which are best translated as direct objects. Some more frequently seen intransitive verbs that use a dative object are the following:",
         "examples": [
-          "persuadeo - persuade\t\t\timpero - order",
-          "credo - believe\t\t\t\tstudeo - eagerly pursue",
-          "mando - command\t\t\t\tresisto - resist, oppose",
-          "noceo -  harm"
+          "mihi nocuerunt – they harmed me",
+          "hostibus resistimus – we are opposing the enemy"
         ],
         "tags": [
           "Noun",
@@ -238,13 +239,10 @@
       {
         "number": "18",
         "title": "Dative with Special Compound Verbs (LUD 56)",
-        "description": "Many verbs compounded with ad-, ante-, con-, in-, inter-, ob-, post-, prae-, pro-, sub-, and super- may take a dative object, which is best translated in English as a direct object:  nobis insidiantur,  they are plotting against us; hostibus occurrimus, we meet the enemy.  Some of the more common such verbs are the following:",
+        "description": "Many verbs compounded with ad-, ante-, con-, in-, inter-, ob-, post-, prae-, pro-, sub-, and super- may take a dative object, which is best translated in English as a direct object. Some of the more common such verbs are: praesto - excel, surpass; occurro - meet; praeficio - put in charge of; appropinquo - draw near, approach; obsto - oppose, stand in the way of.",
         "examples": [
-          "praesto - excel, surpass",
-          "occurro - meet",
-          "praeficio - put in charge of",
-          "appropinquo - draw near,approach",
-          "obsto - oppose, stand in the way of"
+          "nobis insidiantur – they are plotting against us",
+          "hostibus occurrimus – we meet the enemy"
         ],
         "tags": [
           "Noun",
@@ -344,8 +342,10 @@
       {
         "number": "25",
         "title": "Direct Object (LUD 1)",
-        "description": "The direct object of a transitive verb is in the accusative.  Puerum amo.  I like the boy.",
-        "examples": [],
+        "description": "The direct object of a transitive verb is in the accusative.",
+        "examples": [
+          "Puerum amo – I like the boy"
+        ],
         "tags": [
           "Noun",
           "Accusative Case"
@@ -442,8 +442,11 @@
       {
         "number": "33",
         "title": "Accusative of Exclamation (VER 8; CAT I.2)",
-        "description": "The accusative is used in exclamations.  (For verbs in exclamations, the infinitive form is used.)\nO tempora!  O the times!  Me miserum!  Ah, wretched me!",
-        "examples": [],
+        "description": "The accusative is used in exclamations.  (For verbs in exclamations, the infinitive form is used.)",
+        "examples": [
+          "O tempora! – O the times!",
+          "Me miserum! – Ah, wretched me!"
+        ],
         "tags": [
           "Noun",
           "Accusative Case"
@@ -544,8 +547,11 @@
       {
         "number": "41",
         "title": "Ablative of Comparison (LUD 37)",
-        "description": "A comparative without quam takes the ablative, but when quam is used, the words denoting the things compared are in the same case.  amicus vita carior, a friend dearer than life vs. amicus carior quam vita",
-        "examples": [],
+        "description": "A comparative without quam takes the ablative, but when quam is used, the words denoting the things compared are in the same case. amicus vita carior, a friend dearer than life vs. amicus carior quam vita",
+        "examples": [
+          "amicus vita carior – a friend dearer than life",
+          "amicus carior quam vita – a friend dearer than life (with quam)"
+        ],
         "tags": [
           "Noun",
           "Ablative Case"
@@ -582,8 +588,14 @@
       {
         "number": "44",
         "title": "Ablative with Special Deponent Verbs (\"PUFF V\" verbs) \t(LUD 59)",
-        "description": "The deponents potior,?utor, fruor, fungor, and vescor govern the ablative, not the accusative.  Equo utor.  I use a horse.",
-        "examples": [],
+        "description": "The deponents potior, utor, fruor, fungor, and vescor govern the ablative, not the accusative.",
+        "examples": [
+          "Equo utor – I use a horse"
+          "Cibo vescor – I feed on food",
+          "Munere fungor – I perform a duty",
+          "Magna voluptate fruor – I enjoy great pleasure",
+          "Urbis potior – I get possession of the city"
+        ],
         "tags": [
           "Noun",
           "Ablative Case"
