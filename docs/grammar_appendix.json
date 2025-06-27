@@ -699,8 +699,8 @@
       },
       {
         "number": "52",
-        "title": "The vocative case expresses the person or thing directly addressed by a speaker.  It normally follows one or more words.  When a vocative begins a sentence, it usually expresses strong emotion.",
-        "description": "Locative Case (C+P 8)",
+        "title": "Vocative Case (LUD 5)",
+        "description": "The vocative case expresses the person or thing directly addressed by a speaker.  It normally follows one or more words.  When a vocative begins a sentence, it usually expresses strong emotion.",
         "examples": [
           "Quid facis, bone serve?  What are you doing, good slave?",
           "Ubi properas, mi fili?  Where are you hurrying, my son?"
@@ -712,8 +712,8 @@
       },
       {
         "number": "53",
-        "title": "The locative case expresses place where without a preposition (vs. abl. of place where with prep.) only with names of towns, cities, small islands, or with domus, rus, and humus.",
-        "description": "Verbs",
+        "title": "Locative Case (C+P 8)",
+        "description": "The locative case expresses place where without a preposition (vs. abl. of place where with prep.) only with names of towns, cities, small islands, or with domus, rus, and humus.",
         "examples": [
           "Romae templum deae vidisti.",
           "You saw the temple of the goddess in/at Rome.",
@@ -1330,13 +1330,13 @@
       },
       {
         "number": "97",
-        "title": "The Supine is a verbal noun of the 4th declension existing in only the accusative and ablative singular, e.g. from dico: Accus. dictum; Abl. dictu.",
-        "description": "Gerund (LUD 50)",
+        "title": "The Supine",
+        "description": "The supine is a verbal noun of the 4th declension that exists only in the accusative and ablative singular. For example, from dico: Accusative: dictum; Ablative: dictu. The supine is used in two cases: the accusative to express purpose (with verbs of motion), and the ablative to express respect (often with adjectives such as facilis, difficilis, incredibilis, etc.).",
         "examples": [
-          "a) The ACCUSATIVE is used with verbs of motion to express \tpurpose.",
+          "a) The ACCUSATIVE is used with verbs of motion to express purpose.",
           "Rem publicam perditum ierunt.",
           "They went (in order) to ruin the state.",
-          "b) The ABLATIVE is an ablative of respect used most \tfrequently with adjectives such as \tfacilis, difficilis, optimus, \tincredibilis.",
+          "b) The ABLATIVE is an ablative of respect used most frequently with adjectives such as facilis, difficilis, optimus, incredibilis.",
           "facile dictu, easy to tell."
         ],
         "tags": [
@@ -1346,8 +1346,8 @@
       },
       {
         "number": "98",
-        "title": "The gerund is a verbal noun with only four forms: amandi, -o,",
-        "description": "-um, -o. It is never used as the subject or object of a verb (the infinitive assumes these roles). The gerund is translated into English as ____-ing  (running, fighting, etc.) and is frequently used to express purpose, in the genitive with causa and in the accusative with ad.\nGerundive (LUD 36, 61 & 62)",
+        "title": "The Gerund",
+        "description": "The gerund is a verbal noun with only four forms: amandi, -o, -um, -o. It is never used as the subject or object of a verb (the infinitive assumes these roles). The gerund is translated into English as ____-ing (running, fighting, etc.) and is frequently used to express purpose, in the genitive with causa and in the accusative with ad.",
         "examples": [
           "in dicendo, in speaking",
           "dicendi causa, for the sake of speaking",
@@ -1359,13 +1359,13 @@
         ]
       },
       {
-        "number": "97",
-        "title": "The gerundive is a verbal adjective with 1st/2nd declension endings:  amandus, -a, -um, etc.  One use of the gerundive is the passive periphrastic (see #101 below). The other use is to modify a noun. In this latter use, the gerundive should be translated as _____ -ing, and the accompanying noun should be translated as its direct object (e.g., ad libros legendos, for the purpose of reading books).  Like the gerund, the gerundive is often used to express purpose.",
-        "description": "",
+        "number": "99",
+        "title": "The Gerundive",
+        "description": "The gerundive is a verbal adjective with 1st/2nd declension endings: amandus, -a, -um, etc. One use of the gerundive is the passive periphrastic (see #101 below). The other use is to modify a noun. In this latter use, the gerundive should be translated as _____ -ing, and the accompanying noun should be translated as its direct object (e.g., ad libros legendos, for the purpose of reading books). Like the gerund, the gerundive is often used to express purpose.",
         "examples": [
           "in cohortandis militibus, in encouraging the soldiers",
-          "ad cohortandos milites, for the purpose of encouraging the \tsoldiers",
-          "militum cohortandorum causa, for the sake of encouraging the \tsoldiers"
+          "ad cohortandos milites, for the purpose of encouraging the soldiers",
+          "militum cohortandorum causa, for the sake of encouraging the soldiers"
         ],
         "tags": [
           "Verb",
