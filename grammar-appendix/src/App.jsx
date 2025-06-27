@@ -141,6 +141,7 @@ function TagBar({ tags, activeTags, onTagClick, data }) {
         subheaderArr.splice(
           indIndex + 1,
           0,
+          '__UT_CLAUSES_INDICATIVE_NESTED__',
           '__CONDITIONALS_INDICATIVE_NESTED__',
           '__CUM_CLAUSES_INDICATIVE_NESTED__'
         );
@@ -348,6 +349,30 @@ function TagBar({ tags, activeTags, onTagClick, data }) {
                         }}
                       >
                         ↳ Conditionals
+                      </div>
+                    );
+                  }
+                  if (subheader === '__UT_CLAUSES_INDICATIVE_NESTED__') {
+                    // Render nested option under Indicative Mood
+                    return (
+                      <div
+                        key="ut-clauses-indicative-nested"
+                        style={{
+                          padding: '10px 18px',
+                          cursor: 'pointer',
+                          color: activeTags.includes(majorTag) && activeTags.includes('Indicative Mood') && activeTags.includes('Ut Clauses') ? '#0056b3' : '#222',
+                          background: activeTags.includes(majorTag) && activeTags.includes('Indicative Mood') && activeTags.includes('Ut Clauses') ? '#e3f2fd' : 'transparent',
+                          marginLeft: 24,
+                          fontStyle: 'italic',
+                        }}
+                        onClick={() => {
+                          if (!activeTags.includes(majorTag)) onTagClick(majorTag);
+                          if (!activeTags.includes('Indicative Mood')) onTagClick('Indicative Mood');
+                          onTagClick('Ut Clauses');
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        ↳ Ut Clauses
                       </div>
                     );
                   }
