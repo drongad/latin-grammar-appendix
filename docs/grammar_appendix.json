@@ -52,7 +52,8 @@
           "The leader whom we praise has saved the city."
         ],
         "tags": [
-          "Agreement and Basic Constructions"
+          "Agreement and Basic Constructions",
+          "Relative"
         ]
       },
       {
@@ -398,7 +399,8 @@
         ],
         "tags": [
           "Noun",
-          "Accusative Case"
+          "Accusative Case",
+          "Indirect Discourse"
         ]
       },
       {
@@ -767,7 +769,8 @@
         ],
         "tags": [
           "Verb",
-          "Indicative Mood"
+          "Indicative Mood",
+          "Conditionals"
         ]
       },
       {
@@ -780,7 +783,8 @@
         ],
         "tags": [
           "Verb",
-          "Indicative Mood"
+          "Indicative Mood",
+          "Cum Clauses"
         ]
       },
       {
@@ -849,7 +853,8 @@
         ],
         "tags": [
           "Verb",
-          "Indicative Mood"
+          "Indicative Mood",
+          "Cum Clauses"
         ]
       }
     ]
@@ -874,7 +879,8 @@
         "examples": [],
         "tags": [
           "Verb",
-          "Infinitive Mood"
+          "Infinitive Mood",
+          "Indirect Discourse"
         ]
       },
       {
@@ -888,7 +894,8 @@
         ],
         "tags": [
           "Verb",
-          "Infinitive Mood"
+          "Infinitive Mood",
+          "Indirect Discourse"
         ]
       },
       {
@@ -934,7 +941,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Cum Clauses"
         ]
       },
       {
@@ -947,7 +955,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Cum Clauses"
         ]
       },
       {
@@ -960,7 +969,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Cum Clauses"
         ]
       },
       {
@@ -973,7 +983,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Indirect Discourse"
         ]
       },
       {
@@ -992,7 +1003,7 @@
       {
         "number": "73",
         "title": "Relative Purpose Clause & quo Clause of Purpose with Comparative Word (LUD 55; BG II.17)",
-        "description": "The subjunctive is used in relative clauses expressing purpose; the governing verb is often mitto or a compound of that verb.\nWhen a purpose clause contains a comparative word, it is normally introduced by quo instead of ut. Such clauses are translated in the same ways as an adverbial purpose clause (#72 above).",
+        "description": "The subjunctive is used in relative clauses expressing purpose; the governing verb is often mitto or a compound of that verb.\nWhen a purpose clause contains a comparative word, it is normally introduced by quo instead of ut. Such clauses are translated in the same way as an adverbial purpose clause (#72 above).",
         "examples": [
           "Nuntium mittit qui Romanos moneat.  He sends a messenger \t(in order) to warn the Romans.",
           "Fossam effodiunt quo facilius exercitum hostium impediant.",
@@ -1000,7 +1011,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Relative"
         ]
       },
       {
@@ -1103,7 +1115,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Relative"
         ]
       },
       {
@@ -1203,7 +1216,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Relative"
         ]
       },
       {
@@ -1228,7 +1242,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Relative"
         ]
       },
       {
@@ -1300,7 +1315,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Conditionals"
         ]
       },
       {
@@ -1313,7 +1329,8 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Conditionals"
         ]
       },
       {
@@ -1326,12 +1343,13 @@
         ],
         "tags": [
           "Verb",
-          "Subjunctive Mood"
+          "Subjunctive Mood",
+          "Conditionals"
         ]
       },
       {
         "number": "97",
-        "title": "The Supine",
+        "title": "The Supine (C+P 10; CAT I.10 & 29)",
         "description": "The supine is a verbal noun of the 4th declension that exists only in the accusative and ablative singular. For example, from dico: Accusative: dictum; Ablative: dictu. The supine is used in two cases: the accusative to express purpose (with verbs of motion), and the ablative to express respect (often with adjectives such as facilis, difficilis, incredibilis, etc.).",
         "examples": [
           "a) The ACCUSATIVE is used with verbs of motion to express purpose.",
@@ -1347,7 +1365,7 @@
       },
       {
         "number": "98",
-        "title": "The Gerund",
+        "title": "The Gerund (C+P 10; CAT I.10 & 29)",
         "description": "The gerund is a verbal noun with only four forms: amandi, -o, -um, -o. It is never used as the subject or object of a verb (the infinitive assumes these roles). The gerund is translated into English as ____-ing (running, fighting, etc.) and is frequently used to express purpose, in the genitive with causa and in the accusative with ad.",
         "examples": [
           "in dicendo, in speaking",
@@ -1361,7 +1379,7 @@
       },
       {
         "number": "99",
-        "title": "The Gerundive",
+        "title": "The Gerundive (C+P 10; CAT I.10 & 29)",
         "description": "The gerundive is a verbal adjective with 1st/2nd declension endings: amandus, -a, -um, etc. One use of the gerundive is the passive periphrastic (see #101 below). The other use is to modify a noun. In this latter use, the gerundive should be translated as _____ -ing, and the accompanying noun should be translated as its direct object (e.g., ad libros legendos, for the purpose of reading books). Like the gerund, the gerundive is often used to express purpose.",
         "examples": [
           "in cohortandis militibus, in encouraging the soldiers",
